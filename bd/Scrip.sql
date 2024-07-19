@@ -8,6 +8,15 @@ CREATE TABLE Admin(
     pwd VARCHAR(6)
 );
 
+CREATE TABLE Usuario(
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(30),
+    ap_paterno VARCHAR(30),
+    ap_materno VARCHAR(30),
+    
+
+)
+
 
 
 
