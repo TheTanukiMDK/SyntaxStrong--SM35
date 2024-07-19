@@ -8,7 +8,7 @@
   ---color-5: #ffffff;
 }
 
-/*!!!! ESTILO GENERAL !!!!!*/
+/*!!!! Estilo general*/
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@
   font-family: "Montserrat", sans-serif;
 }
 
-/*!!!! ESTILO DEL BODY !!!!!*/
+/*!!!! Estilo body*/
 body {
   padding-top: 60px; /* Para evitar que el contenido se superponga al navbar fijo */
 }
@@ -72,9 +72,12 @@ body {
   background-color: var(---color-2);
 }
 
-/*!!!! ESTILO DEL HERO !!!!!*/
+/*!!!! ESTILO DEL HERO*/
 .hero {
   background: url("../../image/hero.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 70vh;
 }
 
@@ -95,7 +98,6 @@ body {
   background-color: var(---color-1);
   color: var(---color-3);
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 17px;
 }
