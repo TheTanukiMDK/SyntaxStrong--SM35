@@ -3,9 +3,9 @@
     <nav>
         <div class="logo">
             <i class="bx bx-menu menu-icon"></i>
-            <img src="../../assets/image/logo.png" alt="Logo" width="30" height="24"
+            <img src="../../assets/image/logo.png" alt="Logo" width="30" height="30"
                 class="d-inline-block align-text-top">
-            <span class="logo-name">EduConnect</span>
+            <span class="logo-name">Syntax Strong</span>
         </div>
         <div class="saludo">
             <h5>Steven Romano Chávez | Administrador</h5>
@@ -13,20 +13,20 @@
         <div class="sidebar">
             <div class="logo">
                 <i class="bx bx-menu menu-icon"></i>
-                <img src="../../assets/image/logo.png" alt="Logo" width="30" height="24"
+                <img src="../../assets/image/logo.png" alt="Logo" width="30" height="30"
                     class="d-inline-block align-text-top">
-                <span class="logo-name">EduConnect</span>
+                <span class="logo-name">Syntax Strong</span>
             </div>
             <div class="sidebar-content">
                 <ul class="lists">
                     <li class="list">
                         <a href="./dashboard.html" class="nav-link">
                             <i class="bx bx-home-alt icon"></i>
-                            <span class="link">Inicio</span>
+                            <span class="link">Dashboard</span>
                         </a>
                     </li>
                     <li class="list">
-                        <a href="./notificaciones.html" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="bx bx-bell icon"></i>
                             <span class="link">Notificaciones</span>
                         </a>
@@ -38,26 +38,26 @@
                         </a>
                     </li>
                     <li class="list">
-                        <a href="./gestion_asesorias.html" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class='bx bx-notepad icon'></i>
-                            <span class="link">Gestión de asesorías</span>
+                            <span class="link">Gestión de ?</span>
                         </a>
                     </li>
                     <li class="list">
-                        <a href="./gestion_solicitudes.html" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class='bx bx-message-rounded-error icon' ></i>
-                            <span class="link">Gestión de solicitudes</span>
+                            <span class="link">Gestión de ?</span>
                         </a>
                     </li>
                     <div class="bottom-cotent">
                         <li class="list">
-                            <a href="./configuracion.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="bx bx-cog icon"></i>
                                 <span class="link">Configuración</span>
                             </a>
                         </li>
                         <li class="list">
-                            <a href="../login_register/login.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="bx bx-log-out icon"></i>
                                 <span class="link">Cerrar sesión</span>
                             </a>
@@ -66,155 +66,166 @@
             </div>
         </div>
     </nav>
-</header>
+</header>       
 
 
 
 <!-- CSS -->
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  ---color-1: #fab000;
+  ---color-2: #fa3600;
+  ---color-3: #111111;
+  ---color-4: #969696;
+  ---color-5: #ffffff;
+  ---color-6: #262626;
+}
+
 /*!!!! ESTILO DEL GENERAL !!!!!*/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-  min-height: 100%;
-  background: var(---color-6);
+min-height: 100%;
+background: var(---color-6);
 }
 
 /*!!! NAVBAR */
 nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 70px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background: var(---color-4);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.594);
-    z-index: 1000;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(---color-3);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.594);
+  z-index: 1000;
+}
 
 nav .logo {
-    display: flex;
-    align-items: center;
-    margin: 0 24px;
-  }
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+}
 
 .logo .menu-icon {
-    color: #333;
-    font-size: 24px;
-    margin-right: 14px;
-    cursor: pointer;
-  }
+  color: var(---color-5);
+  font-size: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+}
 
 .logo .logo-name {
-    margin-left: 8px;
-    color: #265073;
-    font-size: 22px;
-    font-weight: 700;
-  }
+  margin-left: 8px;
+  color: var(---color-5);
+  font-size: 22px;
+  font-weight: 700;
+}
 
 .saludo {
-    display: flex;
-    justify-content: flex-end;
-    text-align: right;
-    margin-left: auto;
-    padding-right: 30px;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  margin-left: auto;
+  padding-right: 30px;
 }
 
 .saludo h5{
-    font-family: 'Montserrat' sans-serif;
-    font-weight: 450;
+  color: var(---color-5);
+  font-family: 'Poppins' sans-serif;
+  font-weight: 450;
 }
 
 nav .sidebar {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    width: 260px;
-    padding: 20px 0;
-    background-color: #fff;
-    box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s ease;
-  }
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 320px;
+  padding: 20px 0;
+  background-color: var(---color-3);
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
 
 nav.open .sidebar {
-    left: 0;
-  }
+  left: 0;
+}
 
 .sidebar .sidebar-content {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 30px 16px;
-  }
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 16px;
+}
 
 .sidebar-content .list {
-    list-style: none;
-  }
+  list-style: none;
+}
 
 .list .nav-link {
-    display: flex;
-    align-items: center;
-    margin: 8px 0;
-    padding: 14px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-  }
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
 
 .lists .nav-link:hover {
-    background-color: #0D6EFD;
-  }
+  background-color: var(---color-1);
+}
 
 .nav-link .icon {
-    margin-right: 14px;
-    font-size: 20px;
-    color: #707070;
-  }
+  margin-right: 14px;
+  font-size: 20px;
+  color: #707070;
+}
 
 .nav-link .link {
-    font-size: 16px;
-    color: #707070;
-    font-weight: 400;
-  }
-  
+  font-size: 16px;
+  color: #707070;
+  font-weight: 400;
+}
+
 
 .lists .nav-link:hover .icon,
 .lists .nav-link:hover .link {
-    color: #fff;
-  }
+  color: var(---color-3);
+}
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 1000vh;
-    width: 200%;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s ease;
-    background: rgba(0, 0, 0, 0.3);
-  }
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
 
 nav.open ~ .overlay {
-    opacity: 1;
-    left: 260px;
-    pointer-events: auto;
-  }
+  opacity: 1;
+  left: 260px;
+  pointer-events: auto;
+}
 
 
 /*!!! Contenido general */
-  /* Ajustes para el contenido general para evitar la superposición */
+/* Ajustes para el contenido general para evitar la superposición */
 .contenido-general {
-    margin-top: 110px;
+  margin-top: 110px;
 }
-
 
 <!-- Script JS -->
 const navBar = document.querySelector("nav"),

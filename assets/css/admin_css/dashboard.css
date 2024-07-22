@@ -6,6 +6,7 @@
   ---color-3: #111111;
   ---color-4: #969696;
   ---color-5: #ffffff;
+  ---color-6: #262626;
 }
 
 /*!!!! ESTILO DEL GENERAL !!!!!*/
@@ -64,7 +65,8 @@ nav .logo {
 }
 
 .saludo h5{
-  font-family: 'Montserrat' sans-serif;
+  color: var(---color-5);
+  font-family: 'Poppins' sans-serif;
   font-weight: 450;
 }
 
