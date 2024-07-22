@@ -1,0 +1,9 @@
+.contenedor_cards{
+    display: flex;
+    justify-content: center;
+}
+
+.cards_grupos_total{
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+}

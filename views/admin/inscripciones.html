@@ -16,6 +16,7 @@
             crossorigin="anonymous" />
         <!-- CSS -->
         <link rel="stylesheet" href="../../assets/css/admin_css/dashboard.css">
+        <link rel="stylesheet" href="../../assets/css/admin_css/usuarios.css">
         <!-- Favicon -->
         <link rel="shortcut icon" href="../../assets/image/favicon.ico"
             type="image/x-icon">
@@ -86,87 +87,38 @@
             </nav>
         </header>
         <main class="contenido-general">
-            <h1 class="fw-bold text-center ">Dashboard</h1>
-            <h2 class="fw-semibold text-center p-2" style="color: #FF810E">Total
-                de membresias Vendidas </h2>
-            <div class="contenido_datos">
-                <div class="total_membresias">
-
-                    <div class="card_datos">
-                        <h3 class="fw-bold text-center">Clasic</h3>
-                        <div>
-                            <h4 class="text-center">Total venta</h4>
-                            <p class="text-center">34567890</p>
-                        </div>
-                    </div>
-
-                    <div class="card_datos">
-                        <h3 class="fw-bold text-center">Premiun</h3>
-                        <div>
-                            <h4 class="text-center">Total venta</h4>
-                            <p class="text-center">34567890</p>
-                        </div>
-                    </div>
-
-                    <div class="card_datos">
-                        <h3 class="fw-bold text-center">Senior</h3>
-                        <div>
-                            <h4 class="text-center">Total venta</h4>
-                            <p class="text-center">34567890</p>
-                        </div>
-                    </div>
-                </div>
+            <h1 class="fw-bold text-center p-2">Inscripciones</h1>
+            <div class="tabla_usuarios">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre completo</th>
+                            <th>Membresia</th>
+                            <th>Fecha de inicio</th>
+                            <th>Fecha de fin</th>
+                            <th>Estatus</th>
+                            <th>Pago</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>uiasdgiasd</td>
+                            <td>uisdfghsuiof</td>
+                            <td>siodfbndiosf</td>
+                            <td>asdasdasdasd</td>
+                            <td>asdasdasdasd</td>
+                            <td>asdasdasdasd</td>
+                            <td>
+                                <button class="btn btn-danger">Eliminar</button>
+                                <button class="btn btn-success">Actualizar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="usuarios_datos">
-                <h3 class="fw-semibold text-center p-3"
-                    style="color: #FF810E">Usuarios Registrados</h3>
-<div class="agrupaciones">
-    <div class="card_datos_grande">
-        <div class="datos_usuarios">
-            <div class="datos_1">
-                <h4 class="fw-semibold text-center">Total de usuarios</h4>
-                <p class="text-center">124222</p>
-            </div>
-            <div class="datos_1">
-                <h4 class="fw-semibold text-center">Hombres</h4>
-                <p class="text-center">40</p>
-            </div>
-
-            <div class="datos_1">
-                <h4 class="fw-semibold text-center">Mujeres</h4>
-                <p class="text-center">30</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="inscristos_usuarios">
-    <h3 class="fw-semibold text-center p-3"
-    style="color: #FF810E">Usuarios Inscritos</h3>
-
-    <div class="card_datos_inscripciones">
-        <div class="card_datos">
-            <h3 class="fw-bold text-center">Clasic</h3>
-            <div>
-                <h4 class="text-center">Total venta</h4>
-                <p class="text-center">34567890</p>
-            </div>
-        </div>
-
-        <div class="card_datos">
-            <h3 class="fw-bold text-center">Clasic</h3>
-            <div>
-                <h4 class="text-center">Total venta</h4>
-                <p class="text-center">34567890</p>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-</div>
         </main>
         <footer>
             <!-- place footer here -->
@@ -185,3 +137,4 @@
         <script src="../../assets/js/admin/sidevar.js"></script>
     </body>
 </html>
+
