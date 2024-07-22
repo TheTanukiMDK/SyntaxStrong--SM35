@@ -19,7 +19,7 @@
 
 body {
 min-height: 100%;
-background: var(---color-6);
+background: var();
 }
 
 /*!!! NAVBAR */
@@ -114,12 +114,12 @@ nav.open .sidebar {
 .nav-link .icon {
   margin-right: 14px;
   font-size: 20px;
-  color: #707070;
+  color: #ffffff;
 }
 
 .nav-link .link {
   font-size: 16px;
-  color: #707070;
+  color: #ffffff;
   font-weight: 400;
 }
 
@@ -153,3 +153,57 @@ nav.open ~ .overlay {
 .contenido-general {
   margin-top: 110px;
 }
+
+.contenido_datos{
+  display: flex;
+  justify-content: center;
+}
+
+.total_membresias{
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+}
+
+.card_datos{
+  background-color: #F6F6F6;
+  margin-left: 55px;
+  padding: 40px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.26);
+}
+/* Usuarios */
+
+.agrupaciones{
+  display: flex;
+  justify-content: center;
+}
+
+.card_datos_grande{
+  width: 57%;
+  background-color: #F6F6F6;
+  padding: 40px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.26);
+
+
+}
+
+.datos_usuarios{
+  display: flex;
+}
+
+.datos_usuarios .datos_1{
+  margin-left: 100px;
+}
+
+/* Inscripciones */
+
+.card_datos_inscripciones{
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+  justify-content: center;
+}
+
+
+
+
