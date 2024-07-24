@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="./assets/css/landing_page/home.css">
   <!-- Favicono -->
   <link rel="shortcut icon" href="./assets/image/favicon.ico" type="image/x-icon">
-  <!-- Material Icons kkm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -->
+  <!-- Material Icons --->
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -32,7 +33,7 @@
           <a href="./views/landing_page/soporte.html">Soporte</a>
         </div>
         <div>
-          <button class="btn">¡Inscríbite ahora!</button>
+          <a class="btn" href="./views/register/register.html">¡Inscríbite ahora!</a>
         </div>
       </div>
     </nav>
@@ -43,53 +44,67 @@
       <div class="text-center text-white">
         <h1>Syntax Strong</h1>
         <p>"Programando tu mejor versión"</p>
-        <a href="./view/login_register/login.html" class="cta-btn btn btn-primary">Comienza Ahora</a>
+        <a href="./views/register/register.html" class="cta-btn btn btn-primary">Comienza Ahora</a>
       </div>
     </section>
     <!-- Sección de Bienvenida -->
     <section class="bienvenida py-5">
       <h2>¡Entrena con lógica, crece con fuerza!</h2>
     </section class="plan py-5">
-    <table class="planes">
-      <h2 style="text-align: center;" class="py-4">Elige tu mejor plan</h2>
-      <thead>
-        <tr>
-          <th>Caracteríticas</th>
-          <th>Plan básico</th>
-          <th>Plan premiun</th>
-          <th>Plan senior</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Acceso ilimitado a + 1,400 gimnasios de la red</td>
-          <td></td>
-          <td>Madrid</td>
-        </tr>
-        <tr>
-          <td>Entrena hasta con 5 amigos al mes</td>
-          <td>30</td>
-          <td>Barcelona</td>
-        </tr>
-        <tr>
-          <td>Sillones de masaje</td>
-          <td>35</td>
-          <td>Valencia</td>
-        </tr>
-        <tr>
-          <td>Plan de entrenamiento personalizado</td>
-        </tr>
-        <tr>
-          <td>Entrenamientos en línea</td>
-        </tr>
-        <tr>
-          <td>Acceso a todas las áreas de peso libre e integrado</td>
-        </tr>
-      </tbody>
-    </table>
-    <section>
-
-    </section>
+    <div class="table-container">
+      <h2 class="text-center py-4">Elige tu mejor plan</h2>
+      <table class="planes table table-bordered">
+        <thead>
+          <tr>
+            <th>Caracteríticas</th>
+            <th>Plan básico</th>
+            <th>Plan premiun</th>
+            <th>Plan senior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Acceso ilimitado a + 1,400 gimnasios de la red</td>
+            <td><i class='bx bxs-x-circle icon-size' style='color:#d20003'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+          </tr>
+          <tr>
+            <td>Entrena hasta con 5 amigos al mes</td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+          </tr>
+          <tr>
+            <td>Sillones de masaje</td>
+            <td><i class='bx bxs-x-circle icon-size' style='color:#d20003'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+          </tr>
+          <tr>
+            <td>Plan de entrenamiento personalizado</td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+            <td><i class='bx bxs-x-circle icon-size' style='color:#d20003'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+          </tr>
+          <tr>
+            <td>Entrenamientos en línea</td>
+            <td><i class='bx bxs-x-circle icon-size' style='color:#d20003'></i></td>
+            <td><i class='bx bxs-x-circle icon-size' style='color:#d20003'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+          </tr>
+          <tr>
+            <td>Acceso a todas las áreas de peso libre e integrado</td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+            <td><i class='bx bxs-x-circle icon-size' style='color:#d20003'></i></td>
+            <td><i class='bx bxs-check-circle icon-size' style='color:#1c9603'></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="boton-inscribir">
+      <a href="./view/login_register/login.html" class="cta-btn btn btn-primary">Inscribirse</a>
+    </div>
   </main>
   <!-- Pie de página -->
   <footer class="footer">
