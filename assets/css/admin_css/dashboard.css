@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  ---color-1: #fab000;
-  ---color-2: #fa3600;
-  ---color-3: #111111;
-  ---color-4: #969696;
-  ---color-5: #ffffff;
-  ---color-6: #262626;
+  --color-1: #fab000;
+  --color-2: #fa3600;
+  --color-3: #111111;
+  --color-4: #969696;
+  --color-5: #ffffff;
+  --color-6: #262626;
 }
 
-/*!!!! ESTILO DEL GENERAL !!!!!*/
+/* Estilo general */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-min-height: 100%;
-background: var();
+  background: var(--color-5);
+  min-height: 100%;
 }
 
-/*!!! NAVBAR */
+/* Navbar */
 nav {
   position: fixed;
   top: 0;
@@ -31,8 +31,8 @@ nav {
   width: 100%;
   display: flex;
   align-items: center;
-  background: var(---color-3);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.594);
+  background: var(--color-3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -43,7 +43,7 @@ nav .logo {
 }
 
 .logo .menu-icon {
-  color: var(---color-5);
+  color: var(--color-5);
   font-size: 24px;
   margin-right: 14px;
   cursor: pointer;
@@ -51,7 +51,7 @@ nav .logo {
 
 .logo .logo-name {
   margin-left: 8px;
-  color: var(---color-5);
+  color: var(--color-5);
   font-size: 22px;
   font-weight: 700;
 }
@@ -64,10 +64,9 @@ nav .logo {
   padding-right: 30px;
 }
 
-.saludo h5{
-  color: var(---color-5);
-  font-family: 'Poppins' sans-serif;
-  font-weight: 450;
+.saludo h5 {
+  color: var(--color-5);
+  font-weight: 500;
 }
 
 nav .sidebar {
@@ -75,10 +74,10 @@ nav .sidebar {
   top: 0;
   left: -100%;
   height: 100%;
-  width: 320px;
+  width: 280px;
   padding: 20px 0;
-  background-color: var(---color-3);
-  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.4s ease;
 }
 
@@ -108,7 +107,7 @@ nav.open .sidebar {
 }
 
 .lists .nav-link:hover {
-  background-color: var(---color-1);
+  background-color: var(--color-1);
 }
 
 .nav-link .icon {
@@ -123,18 +122,17 @@ nav.open .sidebar {
   font-weight: 400;
 }
 
-
 .lists .nav-link:hover .icon,
 .lists .nav-link:hover .link {
-  color: var(---color-3);
+  color: var(--color-3);
 }
 
 .overlay {
   position: fixed;
   top: 0;
   left: -100%;
-  height: 1000vh;
-  width: 200%;
+  height: 100vh;
+  width: 100vw;
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
@@ -143,67 +141,115 @@ nav.open .sidebar {
 
 nav.open ~ .overlay {
   opacity: 1;
-  left: 260px;
+  left: 0;
   pointer-events: auto;
 }
 
-
-/*!!! Contenido general */
-/* Ajustes para el contenido general para evitar la superposición */
+/* Contenido general */
 .contenido-general {
-  margin-top: 110px;
+  margin-top: 100px;
+  padding: 20px;
 }
 
-.contenido_datos{
+h1, h2, h3 {
+  color: var(--color-2);
+}
+
+.contenido_datos {
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
-.total_membresias{
-  display: grid;
-  grid-template-columns: repeat(3, 300px);
+.total_membresias {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.card_datos{
+.card_datos {
   background-color: #F6F6F6;
-  margin-left: 55px;
-  padding: 40px;
-  border-radius: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 200px; /* Altura uniforme para todas las tarjetas */
+  flex: 1;
+  max-width: 300px; /* Ancho máximo para las tarjetas */
 }
-/* Usuarios */
 
-.agrupaciones{
+.card_datos h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card_datos h4 {
+  font-size: 1.2rem;
+  color: var(--color-4);
+}
+
+.card_datos p {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-3);
+}
+
+.usuarios_datos {
+  margin-top: 20px;
+}
+
+.agrupaciones {
   display: flex;
   justify-content: center;
 }
 
-.card_datos_grande{
-  width: 57%;
+.card_datos_grande {
   background-color: #F6F6F6;
-  padding: 40px;
-  border-radius: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.26);
-
-
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 70%; /* Definir el ancho de la tarjeta grande */
+  text-align: center;
 }
 
-.datos_usuarios{
+.datos_usuarios {
   display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
-.datos_usuarios .datos_1{
-  margin-left: 100px;
+.datos_usuarios .datos_1 {
+  flex: 1;
+  margin: 0 10px;
 }
 
-/* Inscripciones */
+.datos_1 h4 {
+  font-size: 1.2rem;
+  color: var(--color-4);
+}
 
-.card_datos_inscripciones{
-  display: grid;
-  grid-template-columns: repeat(2, 500px);
+.datos_1 p {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-3);
+}
+
+.inscristos_usuarios {
+  margin-top: 30px;
+}
+
+.card_datos_inscripciones {
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-
-
-
+.card_datos_inscripciones .card_datos {
+  height: auto; /* Ajuste de altura automática para las tarjetas en esta sección */
+  flex: 1;
+  max-width: 300px; /* Ancho máximo para las tarjetas */
+}
