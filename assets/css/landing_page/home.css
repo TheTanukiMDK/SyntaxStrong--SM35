@@ -78,7 +78,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65vh;
+  height: 70vh;
 }
 
 .hero h1 {
@@ -93,6 +93,16 @@ body {
   margin-bottom: 30px;
 }
 
+.bienvenida{
+  background-color: var(---color-1);
+}
+
+.bienvenida h2{
+  color: var(---color-3);
+  text-transform: uppercase;
+  text-align: center;
+}
+
 .cta-btn {
   padding: 10px 20px;
   background-color: var(---color-1);
@@ -100,6 +110,52 @@ body {
   border: none;
   cursor: pointer;
   font-size: 17px;
+}
+
+/*! Planes*/
+.planes {
+  width: 70%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.planes th, .planes td {
+  border: 1px solid var(--color-4);
+  padding: 15px;
+  text-align: center;
+}
+
+.planes th {
+  background-color: var(--color-1);
+  color: var(--color-5);
+}
+
+.planes tbody tr:nth-child(even) {
+  background-color: var(--color-5);
+}
+
+.planes tbody tr:nth-child(odd) {
+  background-color: var(--color-4);
+}
+
+h2 {
+  color: var(--color-3);
+}
+
+.table-container {
+  padding: 20px;
+}
+
+/*Iconos*/
+.icon-size{
+  font-size: 30px;
+}
+
+/*Botón de inscribirse*/
+.boton-inscribir{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*!!! FOOTER */
