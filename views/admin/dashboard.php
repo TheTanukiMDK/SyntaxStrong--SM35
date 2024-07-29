@@ -10,6 +10,53 @@ $nombre = $_SESSION['admin_nombre'];
 $ap_paterno = $_SESSION['admin_ap_paterno'];
 
 $nombre_completo = $nombre . " " . $ap_paterno;
+
+//logica para obtener el total de venta de las membresias
+include '../../connection/conn.php';
+$id_tipo_membresia_clasic = 1; // Cambia esto según el ID de la membresía Clasic
+$id_tipo_membresia_premium = 2; // Cambia esto según el ID de la membresía Premium
+$id_tipo_membresia_senior = 3; // Cambia esto según el ID de la membresía Senior
+
+$sql_clasic = "SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_tipo_membresia = '$id_tipo_membresia_clasic'";
+$sql_premium = "SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_tipo_membresia = '$id_tipo_membresia_premium'";
+$sql_senior = "SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_tipo_membresia = '$id_tipo_membresia_senior'";
+
+$result_clasic = $conn->query($sql_clasic);
+$result_premium = $conn->query($sql_premium);
+$result_senior = $conn->query($sql_senior);
+
+$total_venta_clasic = $result_clasic->fetch_assoc()['total_venta'];
+$total_venta_premium = $result_premium->fetch_assoc()['total_venta'];
+$total_venta_senior = $result_senior->fetch_assoc()['total_venta'];
+
+//logica para el total de clientes 
+//$id_cliente = $_GET['id_cliente'];
+
+$sql_total_clientes = "SELECT count(*) AS total_clientes FROM tb_clientes";
+$sql_total_hombres = "SELECT count(*) AS total_hombres FROM tb_clientes WHERE sexo = 'masculino'";
+$sq_total_mujeres = "SELECT count(*) AS total_mujeres FROM tb_clientes WHERE sexo = 'femenino'";
+
+$result_total_clientes = $conn->query($sql_total_clientes);
+$result_total_hombres = $conn->query($sql_total_hombres);
+$result_total_mujeres = $conn->query($sq_total_mujeres);
+
+$total_clientes = $result_total_clientes->fetch_assoc()['total_clientes'];
+$total_hombres = $result_total_hombres->fetch_assoc()['total_hombres'];
+$total_mujeres = $result_total_mujeres->fetch_assoc()['total_mujeres'];
+
+//logica para el total de las inscripciones
+
+//$id_inscripcion = $_GET['id_inscripcion'];
+$sql_total_inscritos = "SELECT count(*) AS total_inscritos FROM tb_inscripciones";
+$sql_total_activos = "SELECT count(*) AS total_activos FROM tb_inscripciones WHERE id_estatus = 1";
+
+$result_total_inscritos = $conn->query($sql_total_inscritos);
+$result_total_activos = $conn->query($sql_total_activos);
+
+$total_inscritos = $result_total_inscritos->fetch_assoc()['total_inscritos'];
+$total_activos = $result_total_activos->fetch_assoc()['total_activos'];
+$conn->close();
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -109,7 +156,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                         <h3 class="fw-bold text-center">Clasic</h3>
                         <div>
                             <h4 class="text-center">Total venta</h4>
-                            <p class="text-center">34567890</p>
+                            <p class="text-center"><?= number_format($total_venta_clasic) ?></p>
                         </div>
                     </div>
 
@@ -117,7 +164,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                         <h3 class="fw-bold text-center">Premiun</h3>
                         <div>
                             <h4 class="text-center">Total venta</h4>
-                            <p class="text-center">34567890</p>
+                            <p class="text-center"><?= number_format($total_venta_premium) ?></p>
                         </div>
                     </div>
 
@@ -125,7 +172,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                         <h3 class="fw-bold text-center">Senior</h3>
                         <div>
                             <h4 class="text-center">Total venta</h4>
-                            <p class="text-center">34567890</p>
+                            <p class="text-center"><?= number_format($total_venta_senior) ?></p>
                         </div>
                     </div>
                 </div>
@@ -139,16 +186,16 @@ $nombre_completo = $nombre . " " . $ap_paterno;
         <div class="datos_usuarios">
             <div class="datos_1">
                 <h4 class="fw-semibold text-center">Total de usuarios</h4>
-                <p class="text-center">124222</p>
+                <p class="text-center"><?= number_format($total_clientes) ?></p>
             </div>
             <div class="datos_1">
                 <h4 class="fw-semibold text-center">Hombres</h4>
-                <p class="text-center">40</p>
+                <p class="text-center"> <?= number_format($total_hombres) ?></p>
             </div>
 
             <div class="datos_1">
                 <h4 class="fw-semibold text-center">Mujeres</h4>
-                <p class="text-center">30</p>
+                <p class="text-center"><?= number_format($total_mujeres) ?></p>
             </div>
         </div>
     </div>
@@ -163,7 +210,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
             <h3 class="fw-bold text-center">Total de usuarios</h3>
             <div>
                 <h4 class="text-center">Total usuarios</h4>
-                <p class="text-center">40</p>
+                <p class="text-center"><?= number_format($total_inscritos) ?></p>
             </div>
         </div>
 
@@ -171,7 +218,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
             <h3 class="fw-bold text-center">Activos</h3>
             <div>
                 <h4 class="text-center">Total usuarios</h4>
-                <p class="text-center">20</p>
+                <p class="text-center"><?= number_format($total_activos) ?></p>
             </div>
         </div>
 

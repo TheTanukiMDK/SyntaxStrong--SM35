@@ -22,16 +22,14 @@ SELECT count(*) AS total_activos FROM tb_inscripciones WHERE estatus = 1;
 --Insertar con intervalo de mes
 INSERT INTO tb_inscripciones (
     id_cliente,
-    id_membresia,
+    id_tipo_membresia,
     fecha_inicio,
     fecha_fin,
-    id_estatus,
     pago
 ) VALUES (
-    1,                   
-    2,                   
+    20,      --usuario de ejemplo             
+    2,       
     CURDATE(),           
-    DATE_ADD(CURDATE(), INTERVAL 31 DAY), 
-    1,                   
-    100.00               
+    DATE_ADD(CURDATE(), INTERVAL 31 DAY),               
+    149.00               
 );
