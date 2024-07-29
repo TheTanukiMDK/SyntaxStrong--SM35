@@ -2,15 +2,46 @@ CREATE DATABASE SintaxStrong;
 
 USE SintaxStrong;
 
+-- ADMINISTRADOR -- ADMINISTRADOR -- ADMINISTRADOR -- ADMINISTRADOR -- ADMINISTRADOR
+-- Tabla para administradores
 CREATE TABLE tb_admin (
     id_admin INT PRIMARY KEY AUTO_INCREMENT,
-    usuername VARCHAR(20),
-    correo_electronico VARCHAR(25),
-    pwd VARCHAR(6)
+    nombre VARCHAR(50),
+    ap_paterno VARCHAR(50),
+    ap_materno VARCHAR(50),
+    usuario VARCHAR(20),
+    correo_electronico VARCHAR(50),
+    pwd VARCHAR(255), -- Se aumenta la longitud para mayor seguridad
+    estado ENUM('activo', 'inactivo')
 );
 
+-- Tabla para el login de los administradores
+CREATE TABLE tb_admin_login (
+    id_admin_login INT PRIMARY KEY AUTO_INCREMENT,
+    id_administrador INT DEFAULT NULL,
+    usuario VARCHAR(20) DEFAULT NULL,
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    accion VARCHAR(50) DEFAULT NULL,
+    FOREIGN KEY (id_administrador) REFERENCES tb_admin(id_admin)
+);
+
+-- Tabla para las acciones de los administradores
+CREATE TABLE tb_admin_logs (
+    id_admin_logs INT PRIMARY KEY AUTO_INCREMENT,
+    id_administrador INT DEFAULT NULL,
+    nombre VARCHAR(50),
+    ap_paterno VARCHAR(50),
+    ap_materno VARCHAR(50),
+    estado ENUM('activo', 'inactivo'),
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    accion VARCHAR(20) DEFAULT NULL,
+    FOREIGN KEY (id_administrador) REFERENCES tb_admin(id_admin)
+);
+
+-- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES
+-- Tabla para clientes
 CREATE TABLE tb_clientes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     ap_paterno VARCHAR(50) NOT NULL,
     ap_materno VARCHAR(50) NOT NULL,
@@ -21,26 +52,31 @@ CREATE TABLE tb_clientes (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE tb_membresia (
-    id_membresia INT PRIMARY KEY AUTO_INCREMENT,
+-- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS
+-- Tabla para el tipo de membresias
+CREATE TABLE tb_tipo_membresias (
+    id_tipo_membresia INT PRIMARY KEY AUTO_INCREMENT,
     tipo_membresia ENUM('basico', 'premiun', 'senior'),
     precio DECIMAL(5,2)
 );
 
+-- ESTATUS -- ESTATUS -- ESTATUS -- ESTATUS -- ESTATUS -- ESTATUS-- ESTATUS -- ESTATUS
+-- Tabla para estatus
 CREATE TABLE tb_estatus (
     id_estatus INT PRIMARY KEY AUTO_INCREMENT,
     estatus ENUM('activo', 'vencido', 'cancelado')
 );
 
-CREATE TABLE tb_inscripcion (
+-- INSCRIPCIONES -- INSCRIPCIONES -- INSCRIPCIONES -- INSCRIPCIONES -- INSCRIPCIONES 
+-- Tabla para las inscripciones
+CREATE TABLE tb_inscripciones (
     id_inscripcion INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT NOT NULL,
-    id_membresia INT NOT NULL,
-    fecha_inicio DATE, -- Cambiado de TIME a DATE
-    fecha_fin DATE, -- Cambiado de TIME a DATE
-    id_estatus INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES tb_clientes(id), -- Referencia corregida a tb_clientes(id)
-    FOREIGN KEY (id_membresia) REFERENCES tb_membresia(id_membresia),
+    id_cliente INT NOT NULL,
+    id_tipo_membresia INT NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    id_estatus INT NOT NULL DEFAULT 1, -- Por defecto 'activo'
+    FOREIGN KEY (id_cliente) REFERENCES tb_clientes(id_cliente),
+    FOREIGN KEY (id_tipo_membresia) REFERENCES tb_tipo_membresias(id_tipo_membresia),
     FOREIGN KEY (id_estatus) REFERENCES tb_estatus(id_estatus)
 );
--.
