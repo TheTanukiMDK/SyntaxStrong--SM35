@@ -52,6 +52,23 @@ CREATE TABLE tb_clientes (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE tb_clientes_logs (
+    id_log INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    nombre VARCHAR(50),
+    ap_paterno VARCHAR(50),
+    ap_materno VARCHAR(50),
+    curp VARCHAR(18),
+    fecha_na DATE,
+    num_celular VARCHAR(10),
+    sexo ENUM('femenino', 'masculino'),
+    fecha_registro TIMESTAMP,
+    accion ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
+    fecha_accion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES tb_clientes(id_cliente)
+);
+
+
 -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS
 -- Tabla para el tipo de membresias
 CREATE TABLE tb_tipo_membresias (
@@ -80,3 +97,12 @@ CREATE TABLE tb_inscripciones (
     FOREIGN KEY (id_tipo_membresia) REFERENCES tb_tipo_membresias(id_tipo_membresia),
     FOREIGN KEY (id_estatus) REFERENCES tb_estatus(id_estatus)
 );
+
+
+
+
+
+ALTER TABLE tb_clientes_logs DROP FOREIGN KEY tb_clientes_logs_ibfk_1;
+
+ALTER TABLE tb_clientes_logs
+ADD CONSTRAINT tb_clientes_logs_ibfk_1 FOREIGN KEY (id_cliente) REFERENCES tb_clientes(id_cliente) ON DELETE CASCADE;

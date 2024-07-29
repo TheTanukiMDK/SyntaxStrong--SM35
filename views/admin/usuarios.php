@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 session_start();
 
-if(!isset($_SESSION['admin_id'])){
+if (!isset($_SESSION['admin_id'])) {
     header("Location: ../../index.html");
 }
 
@@ -15,7 +15,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 <html lang="es">
 
 <head>
-    <title>Gestion de usuarios | Syntax Strong</title>
+    <title>Gestión de usuarios | Syntax Strong</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -32,111 +32,131 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 </head>
 
 <body>
-<header>
-            <!-- Navbar -->
-            <nav>
+    <header>
+        <!-- Navbar -->
+        <nav>
+            <div class="logo">
+                <i class="bx bx-menu menu-icon"></i>
+                <img src="../../assets/image/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                <span class="logo-name">Syntax Strong</span>
+            </div>
+            <div class="saludo">
+                <h5><?= $nombre_completo; ?> | Administrador</h5>
+            </div>
+            <div class="sidebar">
                 <div class="logo">
                     <i class="bx bx-menu menu-icon"></i>
-                    <img src="../../assets/image/logo.png" alt="Logo" width="30"
-                        height="30"
-                        class="d-inline-block align-text-top">
+                    <img src="../../assets/image/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
                     <span class="logo-name">Syntax Strong</span>
                 </div>
-                <div class="saludo">
-                    <h5><?= $nombre_completo; ?> | Administrador</h5>
-                </div>
-                <div class="sidebar">
-                    <div class="logo">
-                        <i class="bx bx-menu menu-icon"></i>
-                        <img src="../../assets/image/logo.png" alt="Logo"
-                            width="30" height="30"
-                            class="d-inline-block align-text-top">
-                        <span class="logo-name">Syntax Strong</span>
-                    </div>
-                    <div class="sidebar-content">
-                        <ul class="lists">
-                            <li class="list">
-                                <a href="./dashboard.php" class="nav-link">
-                                    <i class="bx bx-home-alt icon"></i>
-                                    <span class="link">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="list">
-                                <a href="./ganancias.php" class="nav-link">
-                                    <i class="bx bx-bell icon"></i>
-                                    <span class="link">Ganancias al mes</span>
-                                </a>
-                            </li>
-                            <li class="list">
-                                <a href="./usuarios.php"
-                                    class="nav-link">
-                                    <i class='bx bx-user-check icon'></i>
-                                    <span class="link">Usuarios</span>
-                                </a>
-                            </li>
-                            <li class="list">
-                                <a href="./inscripciones.php" class="nav-link">
-                                    <i class='bx bx-notepad icon'></i>
-                                    <span class="link">Inscripciones</span>
-                                </a>
-                            </li>
+                <div class="sidebar-content">
+                    <ul class="lists">
+                        <li class="list">
+                            <a href="./dashboard.php" class="nav-link">
+                                <i class="bx bx-home-alt icon"></i>
+                                <span class="link">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="./ganancias.php" class="nav-link">
+                                <i class="bx bx-bell icon"></i>
+                                <span class="link">Ganancias al mes</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="./usuarios.php" class="nav-link">
+                                <i class='bx bx-user-check icon'></i>
+                                <span class="link">Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="./inscripciones.php" class="nav-link">
+                                <i class='bx bx-notepad icon'></i>
+                                <span class="link">Inscripciones</span>
+                            </a>
+                        </li>
 
-                            <li class="list">
-                                <a href="../../connection/logout.php" class="nav-link">
-                                    <i class="bx bx-log-out icon"></i>
-                                    <span class="link">Cerrar sesión</span>
-                                </a>
-                            </li>
-                        </div>
-                    </div>
+                        <li class="list">
+                            <a href="../../connection/logout.php" class="nav-link">
+                                <i class="bx bx-log-out icon"></i>
+                                <span class="link">Cerrar sesión</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
     <main class="contenido-general">
         <h1 class="fw-bold text-center p-2">Todos los usuarios</h1>
-        <div class="tabla_usuarios">
-            <table class="table table-striped table-bordered">
+        <div class="tabla_usuarios table-responsive">
+            <table class="table table-striped table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>id</th>
+                        <th>ID</th>
                         <th>Nombre completo</th>
                         <th>CURP</th>
                         <th>Fecha de nacimiento</th>
-                        <th>Telefono</th>
+                        <th>Teléfono</th>
+                        <th>Sexo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>uiasdgiasd</td>
-                        <td>uisdfghsuiof</td>
-                        <td>siodfbndiosf</td>
-                        <td>asdasdasdasd</td>
-                        <td>
-                            <button class="btn btn-danger">Eliminar</button>
-                            <button class="btn btn-success">Actualizar</button>
-                        </td>
-                    </tr>
+                    <?php
+                    require_once '../../connection/conn.php';
+
+                    $sql = "SELECT id_cliente, CONCAT(nombre, ' ', ap_paterno, ' ', ap_materno) AS nombre_completo, curp, fecha_na, num_celular, sexo FROM tb_clientes";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row['id_cliente'] . "</td>";
+                            echo "<td>" . $row['nombre_completo'] . "</td>";
+                            echo "<td>" . $row['curp'] . "</td>";
+                            echo "<td>" . $row['fecha_na'] . "</td>";
+                            echo "<td>" . $row['num_celular'] . "</td>";
+                            echo "<td>" . $row['sexo'] . "</td>";
+                            echo '<td>
+                                <button class="btn btn-danger btn-sm" onclick="eliminarCliente(' . $row['id_cliente'] . ')">Eliminar</button>
+                                <button class="btn btn-success btn-sm" onclick="actualizarCliente(' . $row['id_cliente'] . ')">Actualizar</button>
+                              </td>';
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='7' class='text-center'>No hay usuarios registrados</td></tr>";
+                    }
+
+                    $conn->close();
+                    ?>
                 </tbody>
             </table>
         </div>
-
     </main>
     <footer>
-        <!-- place footer here -->
+        
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
     <!-- Script JS -->
     <script src="../../assets/js/admin/sidevar.js"></script>
+    <script>
+    function eliminarCliente(id) {
+        if (confirm("¿Está seguro de que desea eliminar este cliente?")) {
+            window.location.href = '../../connection/admin/delete_cliente.php?id=' + id;
+        }
+    }
+
+    function actualizarCliente(id) {
+        window.location.href = '../../views/admin/update_cliente.php?id=' + id;
+    }
+    </script>
 </body>
 
 </html>
