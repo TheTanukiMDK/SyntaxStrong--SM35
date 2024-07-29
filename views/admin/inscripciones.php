@@ -1,7 +1,20 @@
+<?php 
+
+session_start();
+
+if(!isset($_SESSION['admin_id'])){
+    header("Location: ../../index.html");
+}
+
+$nombre = $_SESSION['admin_nombre'];
+$ap_paterno = $_SESSION['admin_ap_paterno'];
+
+$nombre_completo = $nombre . " " . $ap_paterno;
+?>
 <!doctype html>
 <html lang="es">
     <head>
-        <title>Inicio | Syntax Strong</title>
+        <title>Inscripciones | Syntax Strong</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -26,7 +39,7 @@
     </head>
 
     <body>
-        <header>
+    <header>
             <!-- Navbar -->
             <nav>
                 <div class="logo">
@@ -37,7 +50,7 @@
                     <span class="logo-name">Syntax Strong</span>
                 </div>
                 <div class="saludo">
-                    <h5>Ricardo Beltran | Administrador</h5>
+                    <h5><?= $nombre_completo; ?> | Administrador</h5>
                 </div>
                 <div class="sidebar">
                     <div class="logo">
@@ -50,33 +63,33 @@
                     <div class="sidebar-content">
                         <ul class="lists">
                             <li class="list">
-                                <a href="./dashboard.html" class="nav-link">
+                                <a href="./dashboard.php" class="nav-link">
                                     <i class="bx bx-home-alt icon"></i>
                                     <span class="link">Dashboard</span>
                                 </a>
                             </li>
                             <li class="list">
-                                <a href="./ganancias.html" class="nav-link">
+                                <a href="./ganancias.php" class="nav-link">
                                     <i class="bx bx-bell icon"></i>
                                     <span class="link">Ganancias al mes</span>
                                 </a>
                             </li>
                             <li class="list">
-                                <a href="./usuarios.html"
+                                <a href="./usuarios.php"
                                     class="nav-link">
                                     <i class='bx bx-user-check icon'></i>
                                     <span class="link">Usuarios</span>
                                 </a>
                             </li>
                             <li class="list">
-                                <a href="./inscripciones.html" class="nav-link">
+                                <a href="./inscripciones.php" class="nav-link">
                                     <i class='bx bx-notepad icon'></i>
                                     <span class="link">Inscripciones</span>
                                 </a>
                             </li>
 
                             <li class="list">
-                                <a href="./index.html" class="nav-link">
+                                <a href="../../connection/logout.php" class="nav-link">
                                     <i class="bx bx-log-out icon"></i>
                                     <span class="link">Cerrar sesión</span>
                                 </a>

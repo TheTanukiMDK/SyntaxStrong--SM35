@@ -1,7 +1,7 @@
 <?php
 $host = 'mysql-tanukistyles.alwaysdata.net';
 $user = '368585';
-$pass = '46154774'; // Asegúrate de que esta es la contraseña correcta
+$pass = '46154774'; 
 $db = 'tanukistyles_gym';
 
 // Creación de la conexión
