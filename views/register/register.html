@@ -34,48 +34,75 @@
         </nav>
     </header>
     <main>
-        <h2 class="formulario-h2">¡Registrate ahora!</h2>
-        <form class="form-container">
-            <div class="form-group">
-                <label for="nombres">Nombre(s)</label>
-                <input type="text" class="form-control" id="nombres" required>
+        <div class="container mt-5">
+            <h2 class="formulario-h2">¡Registrate ahora!</h2>
+            <div class="card form-card">
+                <div class="card-body">
+                    <form class="form-container" action="../../connection/registroU.php" method="post">
+                        <div class="form-group">
+                            <label for="nombre">Nombre(s)</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ap_paterno">Apellido Paterno</label>
+                            <input type="text" class="form-control" name="ap_paterno" id="ap_paterno" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ap_materno">Apellido Materno</label>
+                            <input type="text" class="form-control" name="ap_materno" id="ap_materno" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="curp">CURP</label>
+                            <input type="text" class="form-control" name="curp" id="curp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_na">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" name="fecha_na" id="fecha_na" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="num_celular">Teléfono</label>
+                            <input type="tel" class="form-control" name="num_celular" id="num_celular" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexo">Sexo</label>
+                            <select class="form-control" id="sexo" required>
+                                <option value="">Seleccione</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="masculino">Masculino</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="apellido-paterno">Apellido Paterno</label>
-                <input type="text" class="form-control" id="apellido-paterno" required>
-            </div>
-            <div class="form-group">
-                <label for="apellido-materno">Apellido Materno</label>
-                <input type="text" class="form-control" id="apellido-materno" required>
-            </div>
-            <div class="form-group">
-                <label for="curp">CURP</label>
-                <input type="text" class="form-control" id="curp" required>
-            </div>
-            <div class="form-group">
-                <label for="fecha-nacimiento">Fecha de Nacimiento</label>
-                <input type="date" class="form-control" id="fecha-nacimiento" required>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" class="form-control" id="telefono" required>
-            </div>
-            <div class="form-group">
-                <label for="sexo">Sexo</label>
-                <select class="form-control" id="sexo" required>
-                    <option value="">Seleccione</option>
-                    <option value="femenino">Femenino</option>
-                    <option value="masculino">Masculino</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
-        </form>
-        </div>
         </div>
     </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+    <!-- Pie de página -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="../../assets/image/logo.png" alt="Logo" />
+        <span>Syntax Strong</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="./index.html">Inicio</a>
+        <a href="./views/landing_page/gimnasios.html">Gimnasios</a>
+        <a href="./views/landing_page/soporte.html">Soporte</a>
+      </nav>
+      <div class="otros">
+        <a href="./view/others/aviso.html" target="_blank">Aviso de privacidad</a>
+        <a href="./view/others/terminos.html" target="_blank">Términos y condiciones</a>
+        <a href="./view/others/map.html" target="_blank">Mapa de sitio</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Syntax Strong. Todos los derechos reservados.</p>
+    </div>
+  </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

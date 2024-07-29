@@ -20,7 +20,10 @@
 /*!!!! Estilo body*/
 body {
     padding-top: 60px; /* Para evitar que el contenido se superponga al navbar fijo */
-    background-color: var(---color-6);
+    background-image: url(../../../assets/image/fondo1.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /*!!! Estilos para el Navbar */
@@ -73,29 +76,137 @@ body {
 /*! Formulario*/
 .formulario-h2{
     color: var(---color-5);
-    padding-top: 30px;
+    padding-top: 5px;
     text-align: center;
 }
 
-.form-container {
+.form-card {
     max-width: 600px;
-    margin:50px auto;
-    border: 1px solid var(--color-4);
+    margin: 50px auto;
+    border: 1px solid var(---color-4);
     border-radius: 8px;
-    background-color: var(--color-5);
-  }
+    background-color: var(---color-5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .form-group label {
-    color: var(---color-5);
+.form-container .form-group label {
+    color: var(---color-3);
     font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(---color-1);
+    border-color: var(---color-1);
+    display: block;
+    margin: 20px auto 10px auto;
+    
+}
+
+.btn-primary:hover {
+    background-color: var(---color-2);
+    border-color: var(---color-2);
+}
+
+
+/*!!! FOOTER */
+.footer {
+  margin-top: 65px;
+  background-color: var(---color-3);
+  color: var(---color-5);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.footer-logo span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 70px;
+  margin-bottom: 20px;
+}
+
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-nav a:hover {
+  color: #ddd;
+}
+
+.otros {
+  display: flex;
+  color: #ffff;
+  font-size: 12px;
+  gap: 10px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.footer-social a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: #ddd;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .footer-container {
+    flex-direction: row;
   }
 
-  .btn-primary {
-    background-color: var(--color-1);
-    border-color: var(--color-1);
+  .footer-logo {
+    margin-bottom: 0;
   }
 
-  .btn-primary:hover {
-    background-color: var(--color-2);
-    border-color: var(--color-2);
+  .footer-nav {
+    margin-bottom: 0;
   }
+
+  .footer-social {
+    margin-bottom: 0;
+  }
+}
