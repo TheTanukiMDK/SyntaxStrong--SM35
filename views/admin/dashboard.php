@@ -160,18 +160,18 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 
     <div class="card_datos_inscripciones">
         <div class="card_datos">
-            <h3 class="fw-bold text-center">Clasic</h3>
+            <h3 class="fw-bold text-center">Total de usuarios</h3>
             <div>
-                <h4 class="text-center">Total venta</h4>
-                <p class="text-center">34567890</p>
+                <h4 class="text-center">Total usuarios</h4>
+                <p class="text-center">40</p>
             </div>
         </div>
 
         <div class="card_datos">
-            <h3 class="fw-bold text-center">Clasic</h3>
+            <h3 class="fw-bold text-center">Activos</h3>
             <div>
-                <h4 class="text-center">Total venta</h4>
-                <p class="text-center">34567890</p>
+                <h4 class="text-center">Total usuarios</h4>
+                <p class="text-center">20</p>
             </div>
         </div>
 
