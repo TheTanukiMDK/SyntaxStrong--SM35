@@ -118,21 +118,48 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                     <tbody>
                         <tr>
                             <th>1</th>
-                            <td>uiasdgiasd</td>
-                            <td>uisdfghsuiof</td>
-                            <td>siodfbndiosf</td>
-                            <td>asdasdasdasd</td>
-                            <td>asdasdasdasd</td>
-                            <td>asdasdasdasd</td>
+                            <td>Ricardo</td>
+                            <td>Premium</td>
+                            <td>20/07/2024</td>
+                            <td>20/08/2024</td>
+                            <td>Activo</td>
+                            <td>Pagado</td>
                             <td>
                                 <button class="btn btn-danger">Eliminar</button>
-                                <button class="btn btn-success">Actualizar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal">Actualizar</button>
+                                <!-- Modal -->
+            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="updateForm" method="post" action="update_membership.php">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateModalLabel">Actualizar Membresía</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="user_id" id="user_id" value="">
+                            <div class="mb-3">
+                                <label for="membership" class="form-label">Membresía</label>
+                                <select class="form-select" id="membership" name="membership">
+                                    <option value="Basic">Basic</option>
+                                    <option value="Premium">Premium</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                    <div class="mb-3">
+                        <label for="duration" class="form-label">Duración (meses)</label>
+                        <input type="number" class="form-control" id="duration" name="duration" min="1" value="1">
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
             </div>
-        </main>
+        </div>
+    </div>
+</main>
         <footer>
             <!-- place footer here -->
         </footer>

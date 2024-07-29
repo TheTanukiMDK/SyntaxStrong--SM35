@@ -34,6 +34,7 @@ if (isset($_GET['id'])) {
                     <option value="masculino" <?php if ($row['sexo'] == 'masculino') echo 'selected'; ?>>Masculino</option>
                 </select><br>
                 <input type="submit" value="Actualizar" class="btn btn-primary">
+                <a href="./usuarios.php" class="btn btn-danger">cancelar</a>
             </form>
         </body>
         </html>
