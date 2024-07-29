@@ -156,7 +156,7 @@ $conn->close();
                         <h3 class="fw-bold text-center">Clasic</h3>
                         <div>
                             <h4 class="text-center">Total venta</h4>
-                            <p class="text-center"><?= number_format($total_venta_clasic) ?></p>
+                            <p class="text-center">$<?= number_format($total_venta_clasic) ?></p>
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@ $conn->close();
                         <h3 class="fw-bold text-center">Premiun</h3>
                         <div>
                             <h4 class="text-center">Total venta</h4>
-                            <p class="text-center"><?= number_format($total_venta_premium) ?></p>
+                            <p class="text-center">$<?= number_format($total_venta_premium) ?></p>
                         </div>
                     </div>
 
@@ -172,7 +172,7 @@ $conn->close();
                         <h3 class="fw-bold text-center">Senior</h3>
                         <div>
                             <h4 class="text-center">Total venta</h4>
-                            <p class="text-center"><?= number_format($total_venta_senior) ?></p>
+                            <p class="text-center">$<?= number_format($total_venta_senior) ?></p>
                         </div>
                     </div>
                 </div>
