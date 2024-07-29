@@ -44,7 +44,7 @@ CREATE TABLE tb_clientes (
     curp VARCHAR(18) NOT NULL UNIQUE,
     fecha_na DATE NOT NULL,
     num_celular VARCHAR(10) NOT NULL,
-    sexo ENUM('femenino', 'masculino') NOT NULL,
+    sexo ENUM('Femenino', 'Masculino') NOT NULL,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -58,18 +58,18 @@ CREATE TABLE tb_clientes_logs (
     curp VARCHAR(18),
     fecha_na DATE,
     num_celular VARCHAR(10),
-    sexo ENUM('femenino', 'masculino'),
+    sexo ENUM('Femenino', 'Masculino'),
     fecha_registro TIMESTAMP,
     accion ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
     fecha_accion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_cliente) REFERENCES tb_clientes(id_cliente) ON DELETE SET NULL
+    FOREIGN KEY (id_cliente) REFERENCES tb_clientes(id_cliente) ON DELETE CASCADE
 );
 
 -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS
 -- Tabla para el tipo de membresias
 CREATE TABLE tb_tipo_membresias (
     id_tipo_membresia INT PRIMARY KEY AUTO_INCREMENT,
-    tipo_membresia ENUM('clasic', 'premiun', 'senior') NOT NULL,
+    tipo_membresia ENUM('Clasic', 'Premiun', 'Senior') NOT NULL,
     precio DECIMAL(5,2) NOT NULL
 );
 
@@ -77,7 +77,7 @@ CREATE TABLE tb_tipo_membresias (
 -- Tabla para estatus
 CREATE TABLE tb_estatus (
     id_estatus INT PRIMARY KEY AUTO_INCREMENT,
-    estatus ENUM('activo', 'vencido', 'cancelado') NOT NULL
+    estatus ENUM('Activo', 'Vencido', 'Cancelado') NOT NULL
 );
 
 -- INSCRIPCIONES -- INSCRIPCIONES -- INSCRIPCIONES -- INSCRIPCIONES -- INSCRIPCIONES 
