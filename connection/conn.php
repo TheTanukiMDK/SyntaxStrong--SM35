@@ -1,15 +1,15 @@
 <?php
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$database = "SintaxStrong";
+$host = 'mysql-tanukistyles.alwaysdata.net';
+$user = '368585';
+$pass = '46154774'; // Asegúrate de que esta es la contraseña correcta
+$db = 'tanukistyles_gym';
 
-//$conn = new mysqli($hostname, $username, $password, $database);
-$conn = new mysqli($hostname, $username, $password, $database);
+// Creación de la conexión
+$conn = new mysqli($host, $user, $pass, $db);
 
-
-if($conn->connect_error){
-    die("la conexcion a fallado: " . $conn->connect_error);
+// Verificación de la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 
-?>
+echo "Conexión exitosa";
