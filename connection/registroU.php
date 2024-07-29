@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sexo = $_POST['sexo'];
 
     // Consulta para el insert a la tabla tb_clientes
-    $query = "INSERT INTO tb_clientes (nombre, ap_paterno, ap_materno, curp, fecha_na, num_celular, sexo) 
+    $query = "INSERT INTO tb_usuario (nombre, ap_paterno, ap_materno, curp, fecha_na, num_celular, sexo) 
               VALUES ('$nombre', '$ap_paterno', '$ap_materno', '$curp', '$fecha_na', '$num_celular', '$sexo')";
 
     // Ejecutando la consulta
