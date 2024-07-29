@@ -65,9 +65,37 @@ body {
 .btn {
   color: var(---color-3);
   background-color: var(---color-1);
+  font-size: 15px;
+  text-align: center;
+  justify-content: space-between;
+}
+
+/*Botón de login*/
+.btn-login {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el icono y el texto */
+  color: var(---color-3);
+  background-color: var(---color-1);
+  font-size: 15px;
+  padding: 10px 20px; /* Añadir relleno para mejorar el diseño */
+  text-align: center;
+  text-decoration: none; /* Asegurarse de que no haya subrayado en el botón */
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.btn-login i{
+  font-size: 30px; /* Ajuste del tamaño del icono */
 }
 
 .btn:hover {
+  color: var(---color-5);
+  background-color: var(---color-2);
+}
+
+.btn-login:hover{
   color: var(---color-5);
   background-color: var(---color-2);
 }

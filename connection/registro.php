@@ -1,10 +1,9 @@
 <?php 
 include './connection/conn.php';
-// Captura de datos para el registro del cliente
+// Captura de datos para el registro del cliente a la BD
 
-// Verificación del form enviado por POST
+// Verificación del form de registro enviado por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Captura de los datos del form
     $nombre = $_POST['nombre'];
     $ap_paterno = $_POST['ap_paterno'];
     $ap_materno = $_POST['ap_materno'];
@@ -13,15 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_celular = $_POST['num_celular'];
     $sexo = $_POST['sexo'];
 
-    // Consulta para el insert a la tabla tb_clientes
-    $query = "INSERT INTO tb_usuario (nombre, ap_paterno, ap_materno, curp, fecha_na, num_celular, sexo) 
+    // Insertando en la tabla de clientes los capturados en la BD
+    $query = "INSERT INTO tb_clientes (nombre, ap_paterno, ap_materno, curp, fecha_na, num_celular, sexo) 
               VALUES ('$nombre', '$ap_paterno', '$ap_materno', '$curp', '$fecha_na', '$num_celular', '$sexo')";
 
-    // Ejecutando la consulta
     if ($conexion->query($query) === TRUE) {
-        // Redirige al usuario a la vista de tipo de membresía
-        header('Location: ./views/register/register_m.html');
+        $id_cliente = $conexion->insert_id;
+        // Redireccionamiento a la vista del tipo de membresía
+        header("Location: seleccionar_membresia.php?id_cliente=$id_cliente");
         exit();
+        // Depuracion en caso de errores por query
     } else {
         echo "Error: " . $query . "<br>" . $conexion->error;
     }

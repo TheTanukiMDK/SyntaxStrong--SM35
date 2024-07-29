@@ -11,7 +11,7 @@ CREATE TABLE tb_admin (
     ap_materno VARCHAR(50),
     usuario VARCHAR(20),
     correo_electronico VARCHAR(50),
-    pwd VARCHAR(255), -- Se aumenta la longitud para mayor seguridad
+    contraseña VARCHAR(255), -- Se aumenta la longitud para mayor seguridad
     estado ENUM('activo', 'inactivo')
 );
 
