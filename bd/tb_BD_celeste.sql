@@ -95,3 +95,18 @@ CREATE TABLE tb_inscripciones (
     FOREIGN KEY (id_tipo_membresia) REFERENCES tb_tipo_membresias(id_tipo_membresia) ON DELETE CASCADE,
     FOREIGN KEY (id_estatus) REFERENCES tb_estatus(id_estatus) ON DELETE CASCADE
 );
+
+CREATE TABLE tb_inscripciones_log (
+    id_log INT PRIMARY KEY AUTO_INCREMENT,
+    id_inscripcion INT,
+    id_cliente INT,
+    id_tipo_membresia INT,
+    tipo_membresia ENUM('Clasic', 'Premiun', 'Senior'),
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    id_estatus INT,
+    pago DECIMAL(5,2),
+    accion ENUM('INSERT', 'UPDATE', 'DELETE'),
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usuario VARCHAR(255)
+);
