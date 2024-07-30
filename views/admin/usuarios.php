@@ -156,46 +156,66 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 
         <!-- Modal para seleccionar tipo de membresía -->
         <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="membershipModalLabel">Seleccionar Membresía</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="membershipModalLabel">Seleccionar Membresía</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="membershipForm" action="../../connection/admin/add_membresia.php" method="post">
+                    <input type="hidden" id="id_cliente_membresia" name="id_cliente">
+                    <div class="mb-3">
+                        <label for="tipo_membresia" class="form-label">Tipo de Membresía</label>
+                        <select class="form-control" id="tipo_membresia" name="tipo_membresia" required>
+                        <?php
+            include '../../connection/conn.php';
+
+            $consulta = "SELECT * FROM tb_tipo_membresias";
+            $query = mysqli_query($conn, $consulta);
+
+            while ($fila = mysqli_fetch_array($query)) {
+                ?>
+                <option value="<?php echo $fila['id_tipo_membresia']; ?>" data-precio="<?php echo $fila['precio']; ?>">
+                    <?php echo $fila['tipo_membresia']; ?>
+                </option>
+            <?php } ?>
+                        </select>
                     </div>
-                    <div class="modal-body">
-                        <form id="membershipForm" action="../../connection/admin/add_membresia.php" method="post">
-                            <input type="hidden" id="id_cliente_membresia" name="id_cliente">
-                            <div class="mb-3">
-                                <label for="tipo_membresia" class="form-label">Tipo de Membresía</label>
-                                <select class="form-control" id="tipo_membresia" name="tipo_membresia" required>
-                                    <!-- Options will be populated via JavaScript -->
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="costo" class="form-label">Costo</label>
-                                <input type="text" class="form-control" id="costo" name="costo" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
-                                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="estatus" class="form-label">Estatus</label>
-                                <input type="text" class="form-control" id="estatus" name="estatus" value="Activo" readonly>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Pagar</button>
-                            </div>
-                        </form>
+                    <div class="mb-3">
+                        <label for="costo" class="form-label">Costo</label>
+                        <input type="text" class="form-control" id="costo" name="costo" readonly>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estatus" class="form-label">Estatus</label>
+                        <input type="text" class="form-control" id="estatus" name="estatus" value="Activo" readonly>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Pagar</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('tipo_membresia').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var precio = selectedOption.getAttribute('data-precio');
+        document.getElementById('costo').value = precio;
+    });
+</script>
+
 
         <div class="tabla_usuarios table-responsive mt-4">
             <table id="clientesTable" class="table table-striped table-bordered table-hover">
