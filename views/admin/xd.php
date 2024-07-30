@@ -33,8 +33,8 @@ $nombre_completo = $nombre . " " . $ap_paterno;
             color: #212529;
         }
         .table-hover tbody tr:hover {
-            background-color: #212529 !important;
-            color: black;
+            background-color: #343a40 !important;
+            color: white;
         }
     </style>
 </head>

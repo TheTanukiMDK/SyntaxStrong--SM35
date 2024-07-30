@@ -44,19 +44,61 @@ $conn->close();
     <link rel="shortcut icon" href="../../assets/image/favicon.ico" type="image/x-icon">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <!-- DataTables CSS -->
-<link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 </head>
 <script>
     $(document).ready(function() {
         $('.table').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es_es.json"
+            }
+        });
+
+        // Eliminar inscripción
+        $('.btn-eliminar').click(function() {
+            var id = $(this).data('id');
+            if (confirm('¿Estás seguro de que deseas eliminar esta inscripción?')) {
+                $.post('../../connection/admin/delete_inscripcion.php', {id_inscripcion: id}, function(response) {
+                    if (response === 'success') {
+                        alert('Inscripción eliminada correctamente');
+                        location.reload();
+                    } else {
+                        alert('Error al eliminar la inscripción');
+                    }
+                });
+            }
+        });
+
+        // Actualizar inscripción
+        $('.btn-actualizar').click(function() {
+            var id = $(this).data('id');
+            // Aquí puedes agregar lógica para obtener los nuevos valores de actualización, por ejemplo usando un formulario modal
+            var fecha_inicio = prompt('Nueva fecha de inicio (YYYY-MM-DD):');
+            var fecha_fin = prompt('Nueva fecha de fin (YYYY-MM-DD):');
+            var id_estatus = prompt('Nuevo estatus (ID):');
+            var pago = prompt('Nuevo pago:');
+            
+            if (fecha_inicio && fecha_fin && id_estatus && pago) {
+                $.post('../../connection/admin/update_inscripcion.php', {
+                    id_inscripcion: id,
+                    fecha_inicio: fecha_inicio,
+                    fecha_fin: fecha_fin,
+                    id_estatus: id_estatus,
+                    pago: pago
+                }, function(response) {
+                    if (response === 'success') {
+                        alert('Inscripción actualizada correctamente');
+                        location.reload();
+                    } else {
+                        alert('Error al actualizar la inscripción');
+                    }
+                });
+            } else {
+                alert('Por favor, completa todos los campos.');
             }
         });
     });
@@ -144,8 +186,8 @@ $conn->close();
                     <td><?= $inscripcion['estatus'] ?></td>
                     <td><?= $inscripcion['pago'] ?></td>
                     <td>
-                        <button class="btn btn-danger">Eliminar</button>
-                        <button class="btn btn-success">Actualizar</button>
+                        <button class="btn btn-danger btn-eliminar" data-id="<?= $inscripcion['id_inscripcion'] ?>">Eliminar</button>
+                        <button class="btn btn-success btn-actualizar" data-id="<?= $inscripcion['id_inscripcion'] ?>">Actualizar</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>

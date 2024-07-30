@@ -10,42 +10,25 @@ $nombre = $_SESSION['admin_nombre'];
 $ap_paterno = $_SESSION['admin_ap_paterno'];
 $nombre_completo = $nombre . " " . $ap_paterno;
 
-// Conectar a la base de datos
 require_once '../../connection/conn.php';
 
 // Obtener el mes y el año actuales
 $mes_actual = date('m');
-$anio_actual = date('Y');
+$año_actual = date('Y');
 
-// Consultar las ganancias totales por tipo de membresía para el mes actual
-$sql = "
-    SELECT 
-        tm.tipo_membresia,
-        SUM(i.pago) AS total_venta
-    FROM 
-        tb_inscripciones i
-    JOIN 
-        tb_tipo_membresias tm ON i.id_tipo_membresia = tm.id_tipo_membresia
-    WHERE 
-        MONTH(i.fecha_inicio) = ? 
-        AND YEAR(i.fecha_inicio) = ?
-    GROUP BY 
-        tm.tipo_membresia
-";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('ii', $mes_actual, $anio_actual);
-$stmt->execute();
-$result = $stmt->get_result();
+// Ganancias totales por tipo de membresía para el mes actual
+$sql = "CALL obtener_ganancias($mes_actual, $año_actual)";
+$result = $conn->query($sql);
 
 $ganancias = [];
 while ($row = $result->fetch_assoc()) {
     $ganancias[$row['tipo_membresia']] = $row['total_venta'];
 }
 
-$stmt->close();
 $conn->close();
 
 ?>
+
 <!doctype html>
 <html lang="en">
 
