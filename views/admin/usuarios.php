@@ -1,6 +1,4 @@
-// usuarios.php
 <?php
-
 session_start();
 
 if (!isset($_SESSION['admin_id'])) {
@@ -15,22 +13,30 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 ?>
 <!doctype html>
 <html lang="es">
-
 <head>
     <title>Gestión de usuarios | Syntax Strong</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../assets/css/admin_css/dashboard.css">
     <link rel="stylesheet" href="../../assets/css/admin_css/usuarios.css">
-    <!-- Favicon -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="shortcut icon" href="../../assets/image/favicon.ico" type="image/x-icon">
-    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            color: #212529;
+        }
+        .dataTables_wrapper .dataTables_length select, .dataTables_wrapper .dataTables_filter input {
+            color: #212529;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #343a40 !important;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -129,13 +135,13 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                             </div>
                             <div class="mb-3">
                                 <label for="num_celular" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="num_celular" name="num_celular" required>
+                                <input type="text" class="form-control" id="num_celular" name="num_celular" maxlength="10" required>
                             </div>
                             <div class="mb-3">
                                 <label for="sexo" class="form-label">Sexo</label>
                                 <select class="form-control" id="sexo" name="sexo" required>
-                                    <option value="femenino">Femenino</option>
-                                    <option value="masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
                                 </select>
                             </div>
                             <div class="modal-footer">
@@ -150,51 +156,69 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 
         <!-- Modal para seleccionar tipo de membresía -->
         <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="membershipModalLabel">Seleccionar Membresía</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="membershipModalLabel">Seleccionar Membresía</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="membershipForm" action="../../connection/admin/add_membresia.php" method="post">
+                    <input type="hidden" id="id_cliente_membresia" name="id_cliente">
+                    <div class="mb-3">
+                        <label for="tipo_membresia" class="form-label">Tipo de Membresía</label>
+                        <select class="form-control" id="tipo_membresia" name="tipo_membresia" required>
+                        <?php
+            include '../../connection/conn.php';
+
+            $consulta = "SELECT * FROM tb_tipo_membresias";
+            $query = mysqli_query($conn, $consulta);
+
+            while ($fila = mysqli_fetch_array($query)) {
+                ?>
+                <option value="<?php echo $fila['id_tipo_membresia']; ?>" data-precio="<?php echo $fila['precio']; ?>">
+                    <?php echo $fila['tipo_membresia']; ?>
+                </option>
+            <?php } ?>
+                        </select>
                     </div>
-                    <div class="modal-body">
-                        <form id="membershipForm" action="../../connection/admin/add_membresia.php" method="post">
-                            <input type="hidden" id="id_cliente_membresia" name="id_cliente">
-                            <div class="mb-3">
-                                <label for="tipo_membresia" class="form-label">Tipo de Membresía</label>
-                                <select class="form-control" id="tipo_membresia" name="tipo_membresia" required>
-                                    <option value="1">Clasic</option>
-                                    <option value="2">Premiun</option>
-                                    <option value="3">Senior</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="costo" class="form-label">Costo</label>
-                                <input type="text" class="form-control" id="costo" name="costo" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
-                                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="estatus" class="form-label">Estatus</label>
-                                <input type="text" class="form-control" id="estatus" name="estatus" value="activo" readonly>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Pagar</button>
-                            </div>
-                        </form>
+                    <div class="mb-3">
+                        <label for="costo" class="form-label">Costo</label>
+                        <input type="text" class="form-control" id="costo" name="costo" readonly>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estatus" class="form-label">Estatus</label>
+                        <input type="text" class="form-control" id="estatus" name="estatus" value="Activo" readonly>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Pagar</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('tipo_membresia').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var precio = selectedOption.getAttribute('data-precio');
+        document.getElementById('costo').value = precio;
+    });
+</script>
+
 
         <div class="tabla_usuarios table-responsive mt-4">
-            <table class="table table-striped table-bordered table-hover">
+            <table id="clientesTable" class="table table-striped table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
@@ -210,7 +234,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                     <?php
                     require_once '../../connection/conn.php';
 
-                    $sql = "SELECT id_cliente, CONCAT(nombre, ' ', ap_paterno, ' ', ap_materno) AS nombre_completo, curp, fecha_na, num_celular, sexo FROM tb_clientes";
+                    $sql = "SELECT id_cliente, CONCAT(nombre, ' ', ap_paterno, ' ', ap_materno) AS nombre_completo, curp, fecha_na, num_celular, sexo FROM tb_clientes ORDER BY id_cliente DESC";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -223,8 +247,9 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                             echo "<td>" . $row['num_celular'] . "</td>";
                             echo "<td>" . $row['sexo'] . "</td>";
                             echo '<td>
-                                <button class="btn btn-danger btn-sm" onclick="eliminarCliente(' . $row['id_cliente'] . ')">Eliminar</button>
-                                <button class="btn btn-success btn-sm" onclick="actualizarCliente(' . $row['id_cliente'] . ')">Actualizar</button>
+                                <button class="btn btn-danger btn-sm" onclick="eliminarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-trash"></i></button>
+                                <button class="btn btn-success btn-sm" onclick="actualizarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-info btn-sm" onclick="mostrarInscripcion(' . $row['id_cliente'] . ')"><i class="bi bi-journal-plus"></i></button>
                               </td>';
                             echo "</tr>";
                         }
@@ -241,14 +266,14 @@ $nombre_completo = $nombre . " " . $ap_paterno;
     <footer>
         
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- DataTable -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="../../assets/js/admin/sidevar.js"></script>
-    <script src="../../connection/admin/add_c&m.js"></script>
+    <script src="../../assets/js/admin/add_c&m.js"></script>
 </body>
-
 </html>

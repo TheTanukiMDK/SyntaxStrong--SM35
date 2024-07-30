@@ -66,7 +66,7 @@ CREATE TABLE tb_clientes_logs (
 );
 
 -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS -- MEMBRESIAS
--- Tabla para el tipo de membresias
+-- Tabla para el tipo de membresías
 CREATE TABLE tb_tipo_membresias (
     id_tipo_membresia INT PRIMARY KEY AUTO_INCREMENT,
     tipo_membresia ENUM('Clasic', 'Premiun', 'Senior') NOT NULL,
@@ -86,6 +86,7 @@ CREATE TABLE tb_inscripciones (
     id_inscripcion INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT NOT NULL,
     id_tipo_membresia INT NOT NULL,
+    tipo_membresia ENUM('Clasic', 'Premiun', 'Senior') NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE NOT NULL,
     id_estatus INT NOT NULL DEFAULT 1, -- Por defecto 'activo'

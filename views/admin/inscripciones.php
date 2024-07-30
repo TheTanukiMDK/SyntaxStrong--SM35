@@ -1,3 +1,4 @@
+//inscripciones.php
 <?php 
 
 session_start();

@@ -1,8 +1,8 @@
-// add_cliente.php
+//add_cliente.php
 <?php
 require_once '../conn.php';
 
-header('Content-Type: application/json'); // Asegurarse de que el contenido sea JSON
+header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
