@@ -1,3 +1,4 @@
+//update_cliente.php
 <?php
 require_once '../../connection/conn.php';
 
@@ -20,7 +21,7 @@ if (isset($_GET['id'])) {
         </head>
         <body>
             <h2>Actualizar Cliente</h2>
-            <form action="../../connection/admin/update_cliente_conn.php" method="post" class="form-control">
+            <form action="../../connection/admin/update_cliente.php" method="post" class="form-control">
                 <input type="hidden" name="id_cliente" value="<?php echo $row['id_cliente']; ?>">
                 Nombre: <input type="text" name="nombre" value="<?php echo $row['nombre']; ?>" class="form-control"><br>
                 Apellido Paterno: <input type="text" name="ap_paterno" value="<?php echo $row['ap_paterno']; ?>" class="form-control"><br>

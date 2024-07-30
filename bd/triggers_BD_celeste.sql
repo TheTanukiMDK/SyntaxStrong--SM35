@@ -65,6 +65,7 @@ DELIMITER ;
 
 -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES -- CLIENTES 
 DELIMITER //
+
 CREATE TRIGGER tg_insert_cliente
 AFTER INSERT ON tb_clientes
 FOR EACH ROW
@@ -73,9 +74,7 @@ BEGIN
     VALUES (NEW.id_cliente, NEW.nombre, NEW.ap_paterno, NEW.ap_materno, NEW.curp, NEW.fecha_na, NEW.num_celular, NEW.sexo, NEW.fecha_registro, 'INSERT');
 END;
 //
-DELIMITER ;
 
-DELIMITER //
 CREATE TRIGGER tg_update_cliente
 AFTER UPDATE ON tb_clientes
 FOR EACH ROW
@@ -84,9 +83,7 @@ BEGIN
     VALUES (NEW.id_cliente, NEW.nombre, NEW.ap_paterno, NEW.ap_materno, NEW.curp, NEW.fecha_na, NEW.num_celular, NEW.sexo, NEW.fecha_registro, 'UPDATE');
 END;
 //
-DELIMITER ;
 
-DELIMITER //
 CREATE TRIGGER tg_delete_cliente
 AFTER DELETE ON tb_clientes
 FOR EACH ROW
@@ -95,4 +92,6 @@ BEGIN
     VALUES (OLD.id_cliente, OLD.nombre, OLD.ap_paterno, OLD.ap_materno, OLD.curp, OLD.fecha_na, OLD.num_celular, OLD.sexo, OLD.fecha_registro, 'DELETE');
 END;
 //
+
 DELIMITER ;
+
