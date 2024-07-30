@@ -8,13 +8,13 @@ SELECT count(*) AS total_mujeres FROM tb_clientes WHERE sexo = 'femenino';
 SELECT count(*) AS total_mujeres FROM tb_clientes WHERE sexo = 'masculino';
 
 --Total venta de membresias
-SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_membresia = 1;
-SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_membresia = 2;
-SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_membresia = 3;
+SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_tipo_membresia = 1;
+SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_tipo_membresia = 2;
+SELECT SUM(pago) AS total_venta FROM tb_inscripciones WHERE id_tipo_membresia = 3;
 
 --Total de inscritos
 SELECT count(*) AS total_inscritos FROM tb_inscripciones;
-SELECT count(*) AS total_activos FROM tb_inscripciones WHERE estatus = 1;
+SELECT count(*) AS total_activos FROM tb_inscripciones WHERE id_estatus = 1;
 
 --Total de venta por mes
 
@@ -22,16 +22,14 @@ SELECT count(*) AS total_activos FROM tb_inscripciones WHERE estatus = 1;
 --Insertar con intervalo de mes
 INSERT INTO tb_inscripciones (
     id_cliente,
-    id_membresia,
+    id_tipo_membresia,
     fecha_inicio,
     fecha_fin,
-    id_estatus,
     pago
 ) VALUES (
-    1,                   
-    2,                   
+    20,      --usuario de ejemplo             
+    2,       
     CURDATE(),           
-    DATE_ADD(CURDATE(), INTERVAL 31 DAY), 
-    1,                   
-    100.00               
+    DATE_ADD(CURDATE(), INTERVAL 31 DAY),               
+    149.00               
 );
