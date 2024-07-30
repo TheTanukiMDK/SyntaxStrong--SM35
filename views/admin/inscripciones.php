@@ -27,9 +27,11 @@ $nombre_completo = $nombre . " " . $ap_paterno;
             rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous" />
+            
         <!-- CSS -->
         <link rel="stylesheet" href="../../assets/css/admin_css/dashboard.css">
         <link rel="stylesheet" href="../../assets/css/admin_css/usuarios.css">
+        <link rel="stylesheet" href="../../connection/admin/enviarInscripciones.js">
         <!-- Favicon -->
         <link rel="shortcut icon" href="../../assets/image/favicon.ico"
             type="image/x-icon">
@@ -131,7 +133,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
             <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form id="updateForm" method="post" action="update_membership.php">
+                        <form id="updateForm" method="post" action="../../connection/admin/inscripCion.php">
                         <div class="modal-header">
                             <h5 class="modal-title" id="updateModalLabel">Actualizar Membresía</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -177,4 +179,5 @@ $nombre_completo = $nombre . " " . $ap_paterno;
         <script src="../../assets/js/admin/sidevar.js"></script>
     </body>
 </html>
+
 

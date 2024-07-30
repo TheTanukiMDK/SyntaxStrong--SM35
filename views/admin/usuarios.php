@@ -121,7 +121,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                             </div>
                             <div class="mb-3">
                                 <label for="curp" class="form-label">CURP</label>
-                                <input type="text" class="form-control" id="curp" name="curp" required>
+                                <input type="text" class="form-control" id="curp" name="curp" maxlength="18" required>
                             </div>
                             <div class="mb-3">
                                 <label for="fecha_na" class="form-label">Fecha de Nacimiento</label>
