@@ -250,7 +250,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                                 <button class="btn btn-danger btn-sm" onclick="eliminarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-trash"></i></button>
                                 <button class="btn btn-success btn-sm" onclick="actualizarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-pencil"></i></button>
                                 <button class="btn btn-info btn-sm" onclick="mostrarInscripcion(' . $row['id_cliente'] . ')"><i class="bi bi-journal-plus"></i></button>
-                              </td>';
+                            </td>';
                             echo "</tr>";
                         }
                     } else {
@@ -275,5 +275,61 @@ $nombre_completo = $nombre . " " . $ap_paterno;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="../../assets/js/admin/sidevar.js"></script>
     <script src="../../assets/js/admin/add_c&m.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#clientesTable').DataTable();
+
+            $('#addClientForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '../../connection/admin/add_cliente.php',
+                    data: formData,
+                    success: function(response) {
+                        alert('Cliente añadido exitosamente');
+                        $('#addClientModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Hubo un error al añadir el cliente');
+                        location.reload();
+                    }
+                });
+            });
+
+            $('#membershipModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var clientId = button.data('id');
+                var modal = $(this);
+                modal.find('#id_cliente_membresia').val(clientId);
+            });
+
+            $('#membershipForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '../../connection/admin/add_membresia.php',
+                    data: formData,
+                    success: function(response) {
+                        alert('Membresía añadida exitosamente');
+                        $('#membershipModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Hubo un error al añadir la membresía');
+                    }
+                });
+            });
+
+            $('#tipo_membresia, #duracion').on('change', function() {
+                var tipoMembresia = $('#tipo_membresia').find(':selected').data('precio');
+                var duracion = $('#duracion').val();
+                var precioTotal = tipoMembresia * duracion;
+                $('#precio').val(precioTotal);
+            });
+        });
+    </script>
 </body>
 </html>
