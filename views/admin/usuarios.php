@@ -98,7 +98,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 
         <!-- Botón para abrir el modal -->
         <div class="text-center mb-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addClientModal">
                 Añadir Cliente
             </button>
         </div>
@@ -207,7 +207,6 @@ $nombre_completo = $nombre . " " . $ap_paterno;
         </div>
     </div>
 </div>
-
 <script>
     document.getElementById('tipo_membresia').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
@@ -215,8 +214,6 @@ $nombre_completo = $nombre . " " . $ap_paterno;
         document.getElementById('costo').value = precio;
     });
 </script>
-
-
         <div class="tabla_usuarios table-responsive mt-4">
             <table id="clientesTable" class="table table-striped table-bordered table-hover">
                 <thead class="table-dark">
