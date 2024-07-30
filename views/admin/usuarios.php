@@ -145,8 +145,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                                 </select>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Registrar</button>
                             </div>
                         </form>
                     </div>
@@ -199,8 +198,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                         <input type="text" class="form-control" id="estatus" name="estatus" value="Activo" readonly>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Pagar</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Pagar</button>
                     </div>
                 </form>
             </div>
@@ -236,9 +234,21 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 
                     $sql = "SELECT id_cliente, CONCAT(nombre, ' ', ap_paterno, ' ', ap_materno) AS nombre_completo, curp, fecha_na, num_celular, sexo FROM tb_clientes ORDER BY id_cliente DESC";
                     $result = $conn->query($sql);
-
+                    
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            $id_cliente = $row['id_cliente'];
+                            
+                            // Consulta para verificar si el cliente está inscrito
+                            $sql_inscripcion = "SELECT * FROM tb_inscripciones WHERE id_cliente = ? AND id_estatus = '1'";
+                            $stmt = $conn->prepare($sql_inscripcion);
+                            $stmt->bind_param("i", $id_cliente);
+                            $stmt->execute();
+                            $resultado_inscripcion = $stmt->get_result();
+                            $esta_inscrito = $resultado_inscripcion->num_rows > 0;
+                    
+                            $stmt->close();
+                    
                             echo "<tr>";
                             echo "<td>" . $row['id_cliente'] . "</td>";
                             echo "<td>" . $row['nombre_completo'] . "</td>";
@@ -246,17 +256,22 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                             echo "<td>" . $row['fecha_na'] . "</td>";
                             echo "<td>" . $row['num_celular'] . "</td>";
                             echo "<td>" . $row['sexo'] . "</td>";
-                            echo '<td>
-                                <button class="btn btn-danger btn-sm" onclick="eliminarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-trash"></i></button>
-                                <button class="btn btn-success btn-sm" onclick="actualizarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-info btn-sm" onclick="mostrarInscripcion(' . $row['id_cliente'] . ')"><i class="bi bi-journal-plus"></i></button>
-                            </td>';
+                            echo '<td>';
+                            echo '<button class="btn btn-danger btn-sm" onclick="eliminarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-trash"></i></button>';
+                            echo '<button class="btn btn-success btn-sm" onclick="actualizarCliente(' . $row['id_cliente'] . ')"><i class="bi bi-pencil"></i></button>';
+                            
+                            // Mostrar el botón solo si el cliente no está inscrito
+                            if (!$esta_inscrito) {
+                                echo '<button class="btn btn-info btn-sm" onclick="mostrarInscripcion(' . $row['id_cliente'] . ')"><i class="bi bi-journal-plus"></i></button>';
+                            }
+                            
+                            echo '</td>';
                             echo "</tr>";
                         }
                     } else {
                         echo "<tr><td colspan='7' class='text-center'>No hay usuarios registrados</td></tr>";
                     }
-
+                    
                     $conn->close();
                     ?>
                 </tbody>
