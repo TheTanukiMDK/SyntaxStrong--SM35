@@ -1,9 +1,11 @@
+// usuarios.php
 <?php
 
 session_start();
 
 if (!isset($_SESSION['admin_id'])) {
     header("Location: ../../index.html");
+    exit();
 }
 
 $nombre = $_SESSION['admin_nombre'];
@@ -33,7 +35,6 @@ $nombre_completo = $nombre . " " . $ap_paterno;
 
 <body>
     <header>
-        <!-- Navbar -->
         <nav>
             <div class="logo">
                 <i class="bx bx-menu menu-icon"></i>
@@ -41,7 +42,7 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                 <span class="logo-name">Syntax Strong</span>
             </div>
             <div class="saludo">
-                <h5><?= $nombre_completo; ?> | Administrador</h5>
+                <h5><?= htmlspecialchars($nombre_completo); ?> | Administrador</h5>
             </div>
             <div class="sidebar">
                 <div class="logo">
@@ -75,7 +76,6 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                                 <span class="link">Inscripciones</span>
                             </a>
                         </li>
-
                         <li class="list">
                             <a href="../../connection/logout.php" class="nav-link">
                                 <i class="bx bx-log-out icon"></i>
@@ -89,7 +89,111 @@ $nombre_completo = $nombre . " " . $ap_paterno;
     </header>
     <main class="contenido-general">
         <h1 class="fw-bold text-center p-2">Todos los usuarios</h1>
-        <div class="tabla_usuarios table-responsive">
+
+        <!-- Botón para abrir el modal -->
+        <div class="text-center mb-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+                Añadir Cliente
+            </button>
+        </div>
+
+        <!-- Modal para añadir un nuevo cliente -->
+        <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addClientModalLabel">Registrar nuevo cliente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addClientForm" action="../../connection/admin/add_cliente.php" method="post">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ap_paterno" class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="ap_paterno" name="ap_paterno" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ap_materno" class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="ap_materno" name="ap_materno" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="curp" class="form-label">CURP</label>
+                                <input type="text" class="form-control" id="curp" name="curp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fecha_na" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="fecha_na" name="fecha_na" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="num_celular" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="num_celular" name="num_celular" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sexo" class="form-label">Sexo</label>
+                                <select class="form-control" id="sexo" name="sexo" required>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="masculino">Masculino</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para seleccionar tipo de membresía -->
+        <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="membershipModalLabel">Seleccionar Membresía</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="membershipForm" action="../../connection/admin/add_membresia.php" method="post">
+                            <input type="hidden" id="id_cliente_membresia" name="id_cliente">
+                            <div class="mb-3">
+                                <label for="tipo_membresia" class="form-label">Tipo de Membresía</label>
+                                <select class="form-control" id="tipo_membresia" name="tipo_membresia" required>
+                                    <option value="1">Clasic</option>
+                                    <option value="2">Premiun</option>
+                                    <option value="3">Senior</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="costo" class="form-label">Costo</label>
+                                <input type="text" class="form-control" id="costo" name="costo" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="estatus" class="form-label">Estatus</label>
+                                <input type="text" class="form-control" id="estatus" name="estatus" value="activo" readonly>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Pagar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabla_usuarios table-responsive mt-4">
             <table class="table table-striped table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>
@@ -137,26 +241,14 @@ $nombre_completo = $nombre . " " . $ap_paterno;
     <footer>
         
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
-    <!-- Script JS -->
     <script src="../../assets/js/admin/sidevar.js"></script>
-    <script>
-    function eliminarCliente(id) {
-        if (confirm("¿Está seguro de que desea eliminar este cliente?")) {
-            window.location.href = '../../connection/admin/delete_cliente.php?id=' + id;
-        }
-    }
-
-    function actualizarCliente(id) {
-        window.location.href = '../../views/admin/update_cliente.php?id=' + id;
-    }
-    </script>
+    <script src="../../connection/admin/add_c&m.js"></script>
 </body>
 
 </html>
