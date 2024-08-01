@@ -153,8 +153,8 @@ $nombre_completo = $nombre . " " . $ap_paterno;
             </div>
         </div>
 
-        <!-- Modal para seleccionar tipo de membresía -->
-        <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+     <!-- Modal para seleccionar tipo de membresía -->
+<div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -168,18 +168,22 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                         <label for="tipo_membresia" class="form-label">Tipo de Membresía</label>
                         <select class="form-control" id="tipo_membresia" name="tipo_membresia" required>
                         <?php
-            include '../../connection/conn.php';
+                        include '../../connection/conn.php';
 
-            $consulta = "SELECT * FROM tb_tipo_membresias";
-            $query = mysqli_query($conn, $consulta);
+                        $consulta = "SELECT * FROM tb_tipo_membresias";
+                        $query = mysqli_query($conn, $consulta);
 
-            while ($fila = mysqli_fetch_array($query)) {
-                ?>
-                <option value="<?php echo $fila['id_tipo_membresia']; ?>" data-precio="<?php echo $fila['precio']; ?>">
-                    <?php echo $fila['tipo_membresia']; ?>
-                </option>
-            <?php } ?>
+                        while ($fila = mysqli_fetch_array($query)) {
+                            ?>
+                            <option value="<?php echo $fila['id_tipo_membresia']; ?>" data-precio="<?php echo $fila['precio']; ?>">
+                                <?php echo $fila['tipo_membresia']; ?>
+                            </option>
+                        <?php } ?>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="num_meses" class="form-label">Número de Meses</label>
+                        <input type="number" class="form-control" id="num_meses" name="num_meses" value="1" min="1" required>
                     </div>
                     <div class="mb-3">
                         <label for="costo" class="form-label">Costo</label>
@@ -187,11 +191,11 @@ $nombre_completo = $nombre . " " . $ap_paterno;
                     </div>
                     <div class="mb-3">
                         <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
-                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" readonly required>
                     </div>
                     <div class="mb-3">
                         <label for="fecha_fin" class="form-label">Fecha de Fin</label>
-                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
+                        <input type="text" class="form-control" id="fecha_fin" name="fecha_fin" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="estatus" class="form-label">Estatus</label>
@@ -205,13 +209,36 @@ $nombre_completo = $nombre . " " . $ap_paterno;
         </div>
     </div>
 </div>
+
 <script>
-    document.getElementById('tipo_membresia').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var precio = selectedOption.getAttribute('data-precio');
-        document.getElementById('costo').value = precio;
-    });
+    document.getElementById('tipo_membresia').addEventListener('change', updateCostAndDate);
+    document.getElementById('num_meses').addEventListener('input', updateCostAndDate);
+    document.getElementById('fecha_inicio').addEventListener('input', updateCostAndDate);
+
+    function updateCostAndDate() {
+        var selectedOption = document.getElementById('tipo_membresia').options[document.getElementById('tipo_membresia').selectedIndex];
+        var precio = parseFloat(selectedOption.getAttribute('data-precio'));
+        var numMeses = parseInt(document.getElementById('num_meses').value) || 1;
+        var costoTotal = precio * numMeses;
+
+        document.getElementById('costo').value = costoTotal.toFixed(2);
+
+        // Fecha de Inicio como la fecha actual
+        var today = new Date();
+        var fechaInicio = today.toISOString().split('T')[0];
+        document.getElementById('fecha_inicio').value = fechaInicio;
+
+        // Calcular la Fecha de Fin
+        var fecha = new Date(today);
+        fecha.setMonth(fecha.getMonth() + numMeses);
+        var fechaFin = fecha.toISOString().split('T')[0];
+        document.getElementById('fecha_fin').value = fechaFin;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCostAndDate);
 </script>
+
+
         <div class="tabla_usuarios table-responsive mt-4">
             <table id="clientesTable" class="table table-striped table-bordered table-hover">
                 <thead class="table-dark">
