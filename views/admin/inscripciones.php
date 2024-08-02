@@ -48,7 +48,7 @@ $conn->close();
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> 
 </head>
 <script>
     $(document).ready(function() {
@@ -63,11 +63,12 @@ $conn->close();
             var id = $(this).data('id');
             if (confirm('¿Estás seguro de que deseas eliminar esta inscripción?')) {
                 $.post('../../connection/admin/delete_inscripcion.php', {id_inscripcion: id}, function(response) {
-                    if (response === 'success') {
-                        alert('Inscripción eliminada correctamente');
-                        location.reload();
-                    } else {
-                        alert('Error al eliminar la inscripción');
+                    $('#responseModal .modal-body').text(response);
+                    $('#responseModal').modal('show');
+                    if (response.trim() === 'success') {
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
                     }
                 });
             }
@@ -76,30 +77,34 @@ $conn->close();
         // Actualizar inscripción
         $('.btn-actualizar').click(function() {
             var id = $(this).data('id');
-            // Aquí puedes agregar lógica para obtener los nuevos valores de actualización, por ejemplo usando un formulario modal
-            var fecha_inicio = prompt('Nueva fecha de inicio (YYYY-MM-DD):');
-            var fecha_fin = prompt('Nueva fecha de fin (YYYY-MM-DD):');
-            var id_estatus = prompt('Nuevo estatus (ID):');
-            var pago = prompt('Nuevo pago:');
+            var inscripcion = $(this).closest('tr');
+            var fecha_inicio = inscripcion.find('.fecha_inicio').text();
+            var fecha_fin = inscripcion.find('.fecha_fin').text();
+            var estatus = inscripcion.find('.estatus').text();
+            var pago = inscripcion.find('.pago').text();
+
+            $('#updateModal input[name="id_inscripcion"]').val(id);
+            $('#updateModal input[name="fecha_inicio"]').val(fecha_inicio);
+            $('#updateModal input[name="fecha_fin"]').val(fecha_fin);
+            $('#updateModal select[name="id_estatus"]').val(estatus);
+            $('#updateModal input[name="pago"]').val(pago);
             
-            if (fecha_inicio && fecha_fin && id_estatus && pago) {
-                $.post('../../connection/admin/update_inscripcion.php', {
-                    id_inscripcion: id,
-                    fecha_inicio: fecha_inicio,
-                    fecha_fin: fecha_fin,
-                    id_estatus: id_estatus,
-                    pago: pago
-                }, function(response) {
-                    if (response === 'success') {
-                        alert('Inscripción actualizada correctamente');
+            $('#updateModal').modal('show');
+        });
+
+        $('#updateForm').submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+
+            $.post('../../connection/admin/update_inscripcion.php', formData, function(response) {
+                $('#responseModal .modal-body').text(response);
+                $('#responseModal').modal('show');
+                if (response.trim() === 'success') {
+                    setTimeout(function() {
                         location.reload();
-                    } else {
-                        alert('Error al actualizar la inscripción');
-                    }
-                });
-            } else {
-                alert('Por favor, completa todos los campos.');
-            }
+                    }, 2000);
+                }
+            });
         });
     });
 </script>
@@ -168,10 +173,10 @@ $conn->close();
                     <th>ID</th>
                     <th>Nombre completo</th>
                     <th>Membresía</th>
-                    <th>Fecha de inicio</th>
-                    <th>Fecha de fin</th>
-                    <th>Estatus</th>
-                    <th>Pago</th>
+                    <th class="fecha_inicio">Fecha de inicio</th>
+                    <th class="fecha_fin">Fecha de fin</th>
+                    <th class="estatus">Estatus</th>
+                    <th class="pago">Pago</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -181,10 +186,10 @@ $conn->close();
                     <td><?= $inscripcion['id_inscripcion'] ?></td>
                     <td><?= $inscripcion['nombre_completo'] ?></td>
                     <td><?= $inscripcion['tipo_membresia'] ?></td>
-                    <td><?= $inscripcion['fecha_inicio'] ?></td>
-                    <td><?= $inscripcion['fecha_fin'] ?></td>
-                    <td><?= $inscripcion['estatus'] ?></td>
-                    <td><?= $inscripcion['pago'] ?></td>
+                    <td class="fecha_inicio"><?= $inscripcion['fecha_inicio'] ?></td>
+                    <td class="fecha_fin"><?= $inscripcion['fecha_fin'] ?></td>
+                    <td class="estatus"><?= $inscripcion['estatus'] ?></td>
+                    <td class="pago"><?= $inscripcion['pago'] ?></td>
                     <td>
                         <button class="btn btn-danger btn-eliminar" data-id="<?= $inscripcion['id_inscripcion'] ?>">Eliminar</button>
                         <button class="btn btn-success btn-actualizar" data-id="<?= $inscripcion['id_inscripcion'] ?>">Actualizar</button>
@@ -198,6 +203,66 @@ $conn->close();
 <footer>
     <!-- place footer here -->
 </footer>
+
+<!-- Modal de Respuesta -->
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responseModalLabel">Respuesta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí se mostrará el mensaje de respuesta -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Actualización -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="updateForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Actualizar Inscripción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id_inscripcion">
+                    <div class="mb-3">
+                        <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+                        <input type="date" class="form-control" name="fecha_inicio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_fin" class="form-label">Fecha de fin</label>
+                        <input type="date" class="form-control" name="fecha_fin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_estatus" class="form-label">Estatus</label>
+                        <select class="form-select" name="id_estatus" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Vencido">Vencido</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pago" class="form-label">Pago</label>
+                        <input type="number" step="0.01" class="form-control" name="pago" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script src="../../assets/js/admin/sidevar.js"></script>
